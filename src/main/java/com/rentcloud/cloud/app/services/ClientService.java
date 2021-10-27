@@ -71,10 +71,10 @@ public class ClientService {
                     existClient.get().setName(client.getName());
                 }
                 if(client.getEmail()!=null){
-                    existClient.get().setName(client.getEmail());
+                    existClient.get().setEmail(client.getEmail());
                 }
                 if(client.getPassword()!=null){
-                    existClient.get().setName(client.getPassword());
+                    existClient.get().setEmail(client.getPassword());
                 }
                 if(client.getAge()!=null){
                     existClient.get().setAge(client.getAge());
