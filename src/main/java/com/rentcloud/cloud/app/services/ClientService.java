@@ -67,14 +67,14 @@ public class ClientService {
         if(client.getIdClient()!=null){
             Optional<Client> existClient = repository.getClient(client.getIdClient());
             if(existClient.isPresent()){
-                if(client.getName()!=null){
-                    existClient.get().setName(client.getName());
-                }
                 if(client.getEmail()!=null){
                     existClient.get().setEmail(client.getEmail());
                 }
                 if(client.getPassword()!=null){
-                    existClient.get().setEmail(client.getPassword());
+                    existClient.get().setPassword(client.getPassword());
+                }
+                if(client.getName()!=null){
+                    existClient.get().setName(client.getName());
                 }
                 if(client.getAge()!=null){
                     existClient.get().setAge(client.getAge());
