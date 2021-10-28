@@ -87,7 +87,7 @@ public class MessageController {
      * @return 
      */
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete (@PathVariable("id") int messageId){
         return service.delete(messageId);
     }
