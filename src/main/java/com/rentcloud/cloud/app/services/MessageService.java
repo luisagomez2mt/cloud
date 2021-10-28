@@ -28,7 +28,7 @@ public class MessageService {
      *
      * @return
      */
-    public List<Message> getall() {
+    public List<Message> getAll() {
         return repository.getAll();
     }
 
@@ -68,17 +68,20 @@ public class MessageService {
      * @return
      */
     public Message update(Message message) {
-        if (message.getIdMessage() != null) {
+        if(message.getIdMessage()!=null){
             Optional<Message> existMessage = repository.getMessage(message.getIdMessage());
-            if (existMessage.isPresent()) {
-                if (message.getMessageText() != null) {
+            if(existMessage.isPresent()){
+                if(message.getMessageText()!=null){
                     existMessage.get().setMessageText(message.getMessageText());
                 }
+                if(message.getClient() !=null){
+                    existMessage.get().setClient(message.getClient());
+                }
                 return repository.save(existMessage.get());
-            } else {
+            }else{
                 return message;
             }
-        } else {
+        }else{
             return message;
         }
     }

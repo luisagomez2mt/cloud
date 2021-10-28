@@ -48,8 +48,9 @@ public class AdminController {
     }
     
     /**
-     * GET /{id}
+     * GET {id}
      * @param adminId
+     * comment
      * @return 
      */
     

@@ -35,13 +35,14 @@ public class Message implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMessage;
     private String messageText;
+    
     @ManyToOne
-    @JoinColumn(name="cloudId")
-    @JsonIgnoreProperties({"messages","reservations"})
+    @JoinColumn(name="idCloud")
+    @JsonIgnoreProperties({"messages","client","reservations"})
     private Cloud cloud;
     
-    @ManyToOne@JoinColumn(name="clientId")
-    @JsonIgnoreProperties({"messages","reservations"})
+    @ManyToOne@JoinColumn(name="idClient")
+    @JsonIgnoreProperties({"messages","client","reservations"})
     private Client client;
     
 }

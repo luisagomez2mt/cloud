@@ -27,7 +27,7 @@ public class CloudService {
      * GET
      * @return 
      */
-    public List<Cloud> getall(){
+    public List<Cloud> getAll(){
         return repository.getAll();
     }
     
@@ -73,20 +73,20 @@ public class CloudService {
                 if(cloud.getBrand()!=null){
                     existCloud.get().setBrand(cloud.getBrand());
                 }
-                if(cloud.getCategory()!=null){
-                    existCloud.get().setCategory(cloud.getCategory());
+                if(cloud.getYear()!=null){
+                    existCloud.get().setYear(cloud.getYear());
                 }
                 if(cloud.getDescription()!=null){
                     existCloud.get().setDescription(cloud.getDescription());
                 }
+                if(cloud.getCategory()!=null){
+                    existCloud.get().setCategory(cloud.getCategory());
+                }                
                 if(cloud.getMessages()!=null){
                     existCloud.get().setMessages(cloud.getMessages());
                 }
                 if(cloud.getReservations()!=null){
                     existCloud.get().setReservations(cloud.getReservations());
-                }
-                if(cloud.getYear()!=null){
-                    existCloud.get().setYear(cloud.getYear());
                 }
                 return repository.save(existCloud.get());
             }else {
@@ -103,7 +103,7 @@ public class CloudService {
      * @return 
      */
     public boolean delete(int cloudId){
-        Boolean respuesta = getCloud(cloudId).map(cloud->{
+        Boolean respuesta = getCloud(cloudId).map(cloud ->{
             repository.delete(cloud);
             return true;
         }).orElse(false);

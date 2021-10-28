@@ -44,7 +44,7 @@ public class ScoreController {
     
     @GetMapping("/all")
     public List<Score> getScores(){
-        return service.getall();
+        return service.getAll();
     }
     
     /**
@@ -83,7 +83,7 @@ public class ScoreController {
     
     /**
      * DELETE
-     * @param score
+     * @param scoreId
      * @return 
      */
     @DeleteMapping("/{id}")

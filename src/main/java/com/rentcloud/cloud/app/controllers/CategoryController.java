@@ -83,7 +83,7 @@ public class CategoryController {
     
     /**
      * DELETE
-     * @param categoryId
+     * @param category
      * @return 
      */
     @DeleteMapping("/{id}")

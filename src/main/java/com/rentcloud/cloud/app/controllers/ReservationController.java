@@ -44,7 +44,7 @@ public class ReservationController {
     
     @GetMapping("/all")
     public List<Reservation> getReservations(){
-        return service.getall();
+        return service.getAll();
     }
     
     /**
@@ -83,7 +83,7 @@ public class ReservationController {
     
     /**
      * DELETE
-     * @param reservation
+     * @param reservationId
      * @return 
      */
     @DeleteMapping("/{id}")

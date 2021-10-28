@@ -46,7 +46,8 @@ public class Reservation implements Serializable {
     @JsonIgnoreProperties("reservations")
     private Cloud cloud;
     
-    @ManyToOne@JoinColumn(name = "clientId")
+    @ManyToOne
+    @JoinColumn(name = "clientId")
     @JsonIgnoreProperties({"reservations","messages"})
     private Client client;
     

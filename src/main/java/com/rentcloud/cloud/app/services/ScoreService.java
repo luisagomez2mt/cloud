@@ -28,12 +28,12 @@ public class ScoreService {
      * GET
      * @return 
      */
-    public List<Score> getall(){
+    public List<Score> getAll(){
         return repository.getAll();
     }
     
     /**
-     * GET(id)
+     * GET/{id}
      * @param scoreId
      * @return 
      */
@@ -68,14 +68,17 @@ public class ScoreService {
         if(score.getIdScore()!=null){
             Optional<Score> existScore = repository.getScore(score.getIdScore());
             if(existScore.isPresent()){
-                if(score.getMessageText()!=null){
+                if(score.getMessageText() !=null){
                     existScore.get().setMessageText(score.getMessageText());
                 }
-                if(score.getStars()!=null){
+                if(score.getStars() !=null){
                     existScore.get().setStars(score.getStars());
                 }
+                 if(score.getReservation() !=null){
+                    existScore.get().setReservation(score.getReservation());
+                }
                 return repository.save(existScore.get());
-            }else {
+            }else{
                 return score;
             }
         }else{
@@ -89,7 +92,7 @@ public class ScoreService {
      * @return 
      */
     public boolean delete(int scoreId){
-        Boolean respuesta = getScore(scoreId).map(score->{
+        Boolean respuesta = getScore(scoreId).map(score ->{
             repository.delete(score);
             return true;
         }).orElse(false);

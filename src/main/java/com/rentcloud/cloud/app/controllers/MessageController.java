@@ -44,7 +44,7 @@ public class MessageController {
     
     @GetMapping("/all")
     public List<Message> getMessages(){
-        return service.getall();
+        return service.getAll();
     }
     
     /**
@@ -83,7 +83,7 @@ public class MessageController {
     
     /**
      * DELETE
-     * @param message
+     * @param messageId
      * @return 
      */
     @DeleteMapping("/{id}")

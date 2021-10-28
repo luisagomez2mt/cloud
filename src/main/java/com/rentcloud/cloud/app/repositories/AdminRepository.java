@@ -38,7 +38,7 @@ public class AdminRepository {
      * @param id
      * @return Retorna un registro por el id
      */
-    public Optional<Admin>getAdmin(int id){
+    public Optional<Admin> getAdmin(int id){
         return repository.findById(id);
     }
     
@@ -58,7 +58,7 @@ public class AdminRepository {
      * @param admin 
      */
     public void delete(Admin admin){
-        repository.delete(admin);;
+        repository.delete(admin);
     }
     
     

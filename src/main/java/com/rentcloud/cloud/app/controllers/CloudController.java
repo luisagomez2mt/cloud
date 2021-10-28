@@ -44,7 +44,7 @@ public class CloudController {
     
     @GetMapping("/all")
     public List<Cloud> getClouds(){
-        return service.getall();
+        return service.getAll();
     }
     
     /**
@@ -83,7 +83,7 @@ public class CloudController {
     
     /**
      * DELETE
-     * @param cloud
+     * @param cloudId
      * @return 
      */
     @DeleteMapping("/{id}")

@@ -28,12 +28,12 @@ public class ReservationService {
      * GET
      * @return 
      */
-    public List<Reservation> getall(){
+    public List<Reservation> getAll(){
         return repository.getAll();
     }
     
     /**
-     * GET(id)
+     * GET/{id}
      * @param reservationId
      * @return 
      */
@@ -68,17 +68,26 @@ public class ReservationService {
         if(reservation.getIdReservation()!=null){
             Optional<Reservation> existReservation = repository.getReservation(reservation.getIdReservation());
             if(existReservation.isPresent()){
-                if(reservation.getStartDate()!=null){
+                if(reservation.getStartDate() !=null){
                     existReservation.get().setStartDate(reservation.getStartDate());
                 }
-                if(reservation.getDevolutionDate()!=null){
+                if(reservation.getDevolutionDate() !=null){
                     existReservation.get().setDevolutionDate(reservation.getDevolutionDate());
                 }
-                if(reservation.getStatus()!=null){
+                if(reservation.getStatus() !=null){
                     existReservation.get().setStatus(reservation.getStatus());
                 }
+                 if(reservation.getClient() !=null){
+                    existReservation.get().setClient(reservation.getClient());
+                }
+                  if(reservation.getCloud() !=null){
+                    existReservation.get().setCloud(reservation.getCloud());
+                }
+                  if(reservation.getScore() !=null){
+                    existReservation.get().setScore(reservation.getScore());
+                } 
                 return repository.save(existReservation.get());
-            }else {
+            }else{
                 return reservation;
             }
         }else{
@@ -92,7 +101,7 @@ public class ReservationService {
      * @return 
      */
     public boolean delete(int reservationId){
-        Boolean respuesta = getReservation(reservationId).map(reservation->{
+        Boolean respuesta = getReservation(reservationId).map(reservation ->{
             repository.delete(reservation);
             return true;
         }).orElse(false);
