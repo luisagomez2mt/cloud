@@ -76,7 +76,7 @@ public class ReservationRepository {
         return repository.findAllByStartDateAfterAndStartDateBefore(dateOne,dateTwo);
     }
 
-    public List<CountClient> getTopClient(){
+    public List<CountClient> getTopClients(){
         List<CountClient> clientList = new ArrayList<>();
         List<Object[]> report = repository.countTotalReservationByClient();
         for(int i=0;i<report.size();i++){

@@ -135,7 +135,7 @@ public class ReservationService {
     }
     
     public List<CountClient> getTopClients(){
-       return repository.getTopClient();
+       return repository.getTopClients();
     }
     
 }
