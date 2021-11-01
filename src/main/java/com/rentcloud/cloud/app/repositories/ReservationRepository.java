@@ -5,10 +5,16 @@
  */
 package com.rentcloud.cloud.app.repositories;
 
+import com.rentcloud.cloud.app.entities.Client;
 import com.rentcloud.cloud.app.entities.Reservation;
+import com.rentcloud.cloud.app.reports.CountClient;
 import com.rentcloud.cloud.app.repositories.crud.ReservationCrudRepository;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +24,8 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
+@NoArgsConstructor
+@AllArgsConstructor
 
 public class ReservationRepository {
   
@@ -60,5 +68,21 @@ public class ReservationRepository {
         repository.delete(reservation);
     }
 
+    public List<Reservation> getReservationByStatus(String status){
+        return repository.findAllByStatus(status);
+    }
+    
+    public List<Reservation> getReservationPeriod(Date dateOne, Date dateTwo){
+        return repository.findAllByStartDateAfterAndStartDateBefore(dateOne,dateTwo);
+    }
+
+    public List<CountClient> getTopClient(){
+        List<CountClient> clientList = new ArrayList<>();
+        List<Object[]> report = repository.countTotalReservationByClient();
+        for(int i=0;i<report.size();i++){
+            clientList.add(new CountClient((Long) report.get(i)[1],(Client)report.get(i)[0]));
+            }
+        return clientList;
+    }
 
 }

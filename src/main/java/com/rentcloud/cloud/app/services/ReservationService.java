@@ -6,7 +6,12 @@
 package com.rentcloud.cloud.app.services;
 
 import com.rentcloud.cloud.app.entities.Reservation;
+import com.rentcloud.cloud.app.reports.CountClient;
+import com.rentcloud.cloud.app.reports.ReservationStatus;
 import com.rentcloud.cloud.app.repositories.ReservationRepository;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,5 +113,29 @@ public class ReservationService {
         return respuesta;
     }
 
+    
+    public ReservationStatus   getReservationStatusReport(){
+        List<Reservation> completed = repository.getReservationByStatus("completed");
+        List<Reservation> cancelled = repository.getReservationByStatus("cancelled");
+        return new ReservationStatus(completed.size(),cancelled.size());
+    }
+    
+    public List<Reservation> getReservationPeriod(String dateOne,String dateTwo){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date startDate = dateFormat.parse(dateOne);
+            Date endDate = dateFormat.parse(dateTwo);
+            if(startDate.before(endDate)){
+                return repository.getReservationPeriod(startDate,endDate);
+            }
+        }catch (Exception e){
+               e.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
+    
+    public List<CountClient> getTopClients(){
+       return repository.getTopClient();
+    }
     
 }

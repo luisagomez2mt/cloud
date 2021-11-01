@@ -6,11 +6,14 @@
 package com.rentcloud.cloud.app.controllers;
 
 import com.rentcloud.cloud.app.entities.Reservation;
+import com.rentcloud.cloud.app.reports.CountClient;
+import com.rentcloud.cloud.app.reports.ReservationStatus;
 import com.rentcloud.cloud.app.services.ReservationService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -92,5 +95,20 @@ public class ReservationController {
         return service.delete(reservationId);
     }
     
+    
+    @GetMapping("/report-status")
+    public ReservationStatus getReservationStatusReport(){
+        return service.getReservationStatusReport();
+    }
+    
+     @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+    public List<Reservation> getReservationReportDate(@PathVariable("dateOne") String dateOne, @PathVariable("dateTwo") String dateTwo){
+        return service.getReservationPeriod(dateOne,dateTwo);
+    }
+    
+     @GetMapping("/report-clients")
+    public List<CountClient> getClients(){
+        return service.getTopClients();
+    }
     
 }
